@@ -28,13 +28,21 @@ def _sanitize_name(path: str) -> str:
 
 def _safe_mime(path: str) -> str:
     mime, _ = mimetypes.guess_type(path)
-    if mime:
-        return mime
     ext = os.path.splitext(path)[1].lower()
-    if ext in (".txt", ".log", ".md"): return "text/plain"
-    if ext == ".json": return "application/json"
-    if ext == ".csv": return "text/csv"
-    if ext == ".pdf": return "application/pdf"
+
+    # Force known safe values
+    if ext in (".txt", ".log", ".md"):
+        return "text/plain"
+    if ext in (".json", ".csv"):
+        # Force to text/plain because application/json/text/csv can fail
+        return "text/plain"
+    if ext == ".pdf":
+        return "application/pdf"
+
+    # Fallback if mimetype is valid
+    if mime and "/" in mime:
+        return mime
+
     return "application/octet-stream"
 
 async def _wait_for_op(op_name: str):
