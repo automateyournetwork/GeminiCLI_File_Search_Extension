@@ -1,0 +1,21 @@
+name = "file_search:delete"
+description = "Delete a File Search store, optionally forcing deletion of all associated documents."
+prompt = """
+
+Delete a File Search Store from your Gemini File Search account.
+
+Arguments:
+• store_name:str   (required) File Search Store to delete.
+• force:bool       (optional, default=false) Set to true to remove all associated documents.
+
+Notes:
+- Deletion is permanent; this cannot be undone.
+- If force=false and the store still contains documents, deletion will fail with a FAILED_PRECONDITION error.
+
+Examples:
+• /file_search:delete store_name="fileSearchStores/store_1731171053"
+• /file_search:delete store_name="fileSearchStores/store_1731171053" force=true
+
+Returns:
+→ Confirmation message or error if the deletion failed.
+"""

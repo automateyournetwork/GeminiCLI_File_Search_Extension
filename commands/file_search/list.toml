@@ -1,0 +1,19 @@
+name = "file_search:list"
+description = "List all File Search stores created by your account."
+prompt = """
+
+List all existing File Search Stores in your project.
+
+Usage:
+• /file_search:list
+
+Notes:
+- Displays each store’s name, displayName, document count, and size in bytes.
+- Use this to find store names for querying or deletion.
+
+Example:
+• /file_search:list
+
+Returns:
+→ A list of File Search Stores with their basic metadata.
+"""

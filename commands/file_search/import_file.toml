@@ -1,0 +1,23 @@
+name = "file_search:import_file"
+description = "Upload a file via the Files API, then import it into a Gemini File Search store."
+prompt = """
+
+Upload a file using the Gemini Files API, then import it into a File Search Store.
+This flow is ideal for large binary files or when attaching metadata to your document.
+
+Arguments:
+• file_path:str       (required) Path to the file to upload.
+• display_name:str    (optional) Custom display name for this document.
+
+Notes:
+- This two-step process first uploads the file, then imports it to a persistent File Search Store.
+- Useful for PDF, DOCX, or mixed-format datasets.
+- Uploaded raw files expire after 48 hours, but indexed data persists indefinitely.
+
+Example:
+• /file_search:import_file file_path="network_design.pdf"
+• /file_search:import_file file_path="/tmp/config_dump.json" display_name="Switch Config Dump"
+
+Returns:
+→ The File Search Store name containing the imported file.
+"""

@@ -1,0 +1,23 @@
+name = "file_search:query_file_search"
+description = "Ask Gemini a natural-language question grounded in your uploaded dataset."
+prompt = """
+
+Query your Gemini File Search Store with a natural-language question.
+Gemini retrieves semantically relevant document chunks and grounds its answer in them.
+
+Arguments:
+• store_name:str   (required) The File Search Store name (e.g., fileSearchStores/store_1731171053).
+• question:str     (required) The natural-language question to ask.
+
+Notes:
+- Supports multiple stores by passing a comma-separated list of names.
+- Returns an answer with citations (if available) from the grounding metadata.
+- Works best with model: gemini-2.5-flash or gemini-2.5-pro.
+
+Examples:
+• /file_search:query_file_search store_name="fileSearchStores/store_1731171053" question="What VLANs are configured?"
+• /file_search:query_file_search store_name="fileSearchStores/store_1731172001" question="Summarize key configuration changes."
+
+Returns:
+→ A dictionary with 'answer', 'sources', and 'store' fields.
+"""

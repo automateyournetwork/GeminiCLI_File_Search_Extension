@@ -1,0 +1,19 @@
+name = "file_search:get"
+description = "Retrieve metadata and status for a specific File Search store."
+prompt = """
+
+Get detailed information about a specific File Search Store.
+
+Arguments:
+• store_name:str   (required) The name of the File Search Store (e.g., fileSearchStores/store_1731171053).
+
+Notes:
+- Displays creation time, update time, document counts, and storage size.
+- Helps inspect whether indexing completed successfully.
+
+Example:
+• /file_search:get store_name="fileSearchStores/store_1731171053"
+
+Returns:
+→ A JSON object with store metadata (name, displayName, timestamps, counts, sizeBytes).
+"""

@@ -1,0 +1,96 @@
+name = "file_search:help"
+description = "Show File Search MCP help and quick usage"
+prompt = """
+
+When the user asks for help about this tool, show the following instructions.
+
+Google Gemini File Search (Cloud RAG)
+-------------------------------------
+Provides cloud-based Retrieval Augmented Generation (RAG) through Gemini File Search.
+You can upload any supported file type, index it, and query it semantically using Gemini 2.5.
+
+Subcommands:
+
+• /file_search:upload_and_index [file_path=...] [display_name=...]
+    Upload any supported file (JSON, TXT, PDF, DOCX, CSV, etc.) directly to Gemini File Search.
+    Creates a new File Search Store and indexes the file for semantic retrieval.
+    Args:
+      - file_path:str      (required) Path to file on disk
+      - display_name:str   (optional) Friendly document name
+    Example:
+      /file_search:upload_and_index file_path="show_ip_route.json"
+
+• /file_search:import_file [file_path=...] [display_name=...]
+    Upload a file via the Gemini Files API, then import into a File Search Store.
+    Useful for large binaries or when you need metadata support.
+    Args:
+      - file_path:str      (required)
+      - display_name:str   (optional)
+    Example:
+      /file_search:import_file file_path="network_design.pdf" display_name="NCC Network Design"
+
+• /file_search:query_file_search [store_name=...] [question="..."]
+    Ask a natural-language question grounded in an uploaded dataset.
+    Args:
+      - store_name:str     (required) File Search Store name (e.g. fileSearchStores/abc123)
+      - question:str       (required)
+    Example:
+      /file_search:query_file_search store_name="fileSearchStores/store_1731171053" question="Which VLANs are configured?"
+
+• /file_search:list
+    List all available File Search Stores created by your account.
+    Useful for discovering store names for queries or deletion.
+    Example:
+      /file_search:list
+
+• /file_search:get [store_name=...]
+    Show metadata and stats for a specific File Search Store.
+    Displays document count, size, timestamps, and status.
+    Example:
+      /file_search:get store_name="fileSearchStores/store_1731171053"
+
+• /file_search:delete [store_name=...] [force=true|false]
+    Delete a File Search Store. Set force=true to delete all related documents.
+    Example:
+      /file_search:delete store_name="fileSearchStores/store_1731171053" force=true
+
+• /file_search:help
+    Display this help message.
+
+-------------------------------------
+Supported File Types:
+  - Text (txt, log, md)
+  - JSON, CSV, YAML
+  - PDF, DOCX, PPTX, XLSX
+  - HTML, RST
+  - Configs, code snippets, and more
+  (Max file size: 100 MB)
+
+Notes:
+- You can query multiple stores by passing an array of store names in /file_search:query_file_search.
+- File Search data persists indefinitely until deleted.
+- Raw file uploads via Files API expire after 48 hours.
+- Storage is free; embedding costs standard Gemini embedding rates.
+
+-------------------------------------
+Examples:
+
+• Upload a parsed pyATS output:
+  /file_search:upload_and_index file_path="/tmp/show_ip_interface_brief.json"
+
+• Import a PDF and ask about it:
+  /file_search:import_file file_path="docs/network_summary.pdf"
+  /file_search:query_file_search store_name="fileSearchStores/store_1731171100" question="What routing protocols are mentioned?"
+
+• Manage stores:
+  /file_search:list
+  /file_search:get store_name="fileSearchStores/store_1731171053"
+  /file_search:delete store_name="fileSearchStores/store_1731171053" force=true
+
+-------------------------------------
+Defaults:
+- MIME type auto-detected via file extension
+- Chunking: max_tokens_per_chunk=500, overlap=100
+- Model: gemini-2.5-flash
+
+"""

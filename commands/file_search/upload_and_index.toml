@@ -1,0 +1,23 @@
+name = "file_search:upload_and_index"
+description = "Upload any supported file directly to Gemini File Search and index it for RAG augmentation."
+prompt = """
+
+Upload and index a file (JSON, text, PDF, DOCX, CSV, etc.) directly into Gemini File Search.
+This command creates a new File Search Store and returns its store name for later queries.
+
+Arguments:
+• file_path:str       (required) Path to the file on disk.
+• display_name:str    (optional) Human-readable name for display.
+
+Notes:
+- MIME type is inferred automatically from file extension.
+- Supported file types include .txt, .json, .csv, .pdf, .docx, .pptx, .xlsx, .html, .cfg, etc.
+- Maximum file size: 100 MB.
+
+Example:
+• /file_search:upload_and_index file_path="show_ip_route.json"
+• /file_search:upload_and_index file_path="docs/network_summary.pdf" display_name="Network Summary"
+
+Returns:
+→ The name of the File Search Store created (e.g., fileSearchStores/store_1731171053).
+"""

@@ -1,0 +1,13 @@
+{
+  "name": "FileSearch",
+  "version": "1.0.0",
+  "description": "Built in Cloud Retrieval Augemented Generation (RAG) capabilities for Gemini CLI via Google Gemini File Search.",
+  "mcpServers": {
+    "vision": {
+      "command": "bash",
+      "args": ["${extensionPath}${/}servers${/}run.sh"]
+    }
+  },
+  "contextFileName": "GEMINI.md",
+  "excludeTools": []
+}
